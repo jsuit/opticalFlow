@@ -1,9 +1,10 @@
-package com.example.opticalflow;
+package src.com.example.opticalflow;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -16,8 +17,6 @@ import org.opencv.features2d.FeatureDetector;
 import org.opencv.features2d.Features2d;
 import org.opencv.highgui.VideoCapture;
 import org.opencv.objdetect.CascadeClassifier;
-import org.opencv.video.Video;
-
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -29,7 +28,7 @@ import android.view.Menu;
 public class MainActivity extends Activity implements CvCameraViewListener2 {
 	protected Mat recent;
 	protected Mat prev;
-	protected VideoCapture video = new VideoCapture();
+	
 	public static int MAX_CORNERS = 500;
 	private CameraBridgeViewBase   mOpenCvCameraView;
 	//private VideoCapture videoCapture = new VideoCapture();
@@ -110,6 +109,7 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
 			prev = recent;
 			recent = inputFrame.gray();
 			Mat flow = new Mat();
+			
 			Video.calcOpticalFlowSF(prev, recent, flow, 3, 2, 4);
 			
 			
